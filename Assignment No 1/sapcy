@@ -1,0 +1,28 @@
+import spacy
+
+
+nlp = spacy.load("en_core_web_sm")
+
+text = """
+Name: Gagare Nikita
+Roll No: 42
+Year: B.Tech
+Branch: Information Technology
+Mobile No: 9876543210
+Email: nikita@example.com
+"""
+
+
+doc = nlp(text)
+
+
+tokens = [token.text for token in doc if not token.is_space]
+print("Tokens:")
+print(tokens)
+
+
+
+
+#(venv) PS C:\Users\Nikita\Documents\cc\NLP> python Assigno1.py
+#Tokens:
+#['Name', ':', 'Gagare', 'Nikita', 'Roll', 'No', ':', '42', 'Year', ':', 'B.Tech', 'Branch', ':', 'Information', 'Technology', 'Mobile', 'No', ':', '9876543210', 'Email', ':', 'nikita@example.com']
