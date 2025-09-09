@@ -1,0 +1,37 @@
+import spacy
+from spacy import displacy
+
+
+nlp = spacy.load("en_core_web_sm")
+
+
+sample_text = (
+    "Elon Musk founded SpaceX in 2002. "
+    "Apple released the iPhone 15 in September 2023. "
+    "The Taj Mahal is located in Agra, India. "
+    "He spent €500 on a new laptop. "
+    "Serena Williams won the US Open in 2014. "
+    "Microsoft is headquartered in Redmond. "
+    "They will visit London next April. "
+    "Amazon acquired Whole Foods in 2017. "
+    "The Great Wall of China is a UNESCO World Heritage Site. "
+    "BMW launched a new electric car model last year."
+)
+
+
+doc = nlp(sample_text)
+
+
+for ent in doc.ents:
+    print(
+        f"""
+ent.text = {ent.text}
+ent.start_char = {ent.start_char}
+ent.end_char = {ent.end_char}
+ent.label_ = {ent.label_}
+spacy.explain('{ent.label_}') = {spacy.explain(ent.label_)}
+"""
+    )
+
+
+displacy.serve(doc, style="ent")
